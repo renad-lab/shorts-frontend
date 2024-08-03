@@ -1,10 +1,10 @@
-import AuthorNewForm from "../Components/AuthorNewForm";
+import WriterNewForm from "../Components/WriterNewForm";
 
 function New() {
   return (
     <div className="New">
       <h2>New</h2>
-      <AuthorNewForm />
+      <WriterNewForm />
     </div>
   );
 }

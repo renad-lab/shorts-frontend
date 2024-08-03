@@ -1,10 +1,10 @@
-import Authors from "../Components/Authors";
+import Writers from "../Components/Writers";
 
 function Index() {
   return (
     <div className="Index">
       <h2>Index</h2>
-      <Authors />
+      <Writers />
     </div>
   );
 }

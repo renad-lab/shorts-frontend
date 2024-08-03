@@ -20,10 +20,10 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/authors" element={<Index />} />
-            <Route path="/authors/new" element={<New />} />
-            <Route path="/authors/:id" element={<Show />} />
-            <Route path="/authors/:id/edit" element={<Edit />} />
+            <Route path="/writers" element={<Index />} />
+            <Route path="/writers/new" element={<New />} />
+            <Route path="/writers/:id" element={<Show />} />
+            <Route path="/writers/:id/edit" element={<Edit />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
