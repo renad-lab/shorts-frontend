@@ -1,0 +1,32 @@
+/* Base styles for html and body */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #e0e0e0;
+  color: #362c3f;
+  font-family: Arial, sans-serif; /* Default font-family */
+}
+
+/* Container with margins */
+.container {
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0; /* Optional: reset padding if necessary */
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 600px) {
+  .container {
+    font-size: 16px; /* Font size for larger screens */
+  }
+}
+
+@media (max-width: 599px) {
+  .container {
+    font-size: 14px; /* Font size for smaller screens */
+  }
+}

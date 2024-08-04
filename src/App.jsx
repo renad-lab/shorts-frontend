@@ -1,5 +1,6 @@
 // DEPENDENCIES
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 // PAGES
 import Edit from "./Pages/Edit";
@@ -11,6 +12,7 @@ import Show from "./Pages/Show";
 
 // COMPONENTS
 import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
+        <Footer />
       </Router>
     </div>
   );

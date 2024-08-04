@@ -1,67 +1,20 @@
-// import { useState, useEffect } from "react";
-// import { Link, useParams, useNavigate } from "react-router-dom";
-// import Reviews from "./Reviews";
-// import Shorts from "./Shorts";
-// const API = import.meta.env.VITE_BASE_URL;
-
-// function AuthorDetails() {
-//   const [author, setAuthor] = useState({});
-//   let { id } = useParams();
-//   let navigate = useNavigate();
-
-//   useEffect(() => {
-//     fetch(`${API}/authors/${id}`)
-//       .then((response) => response.json())
-//       .then((responseJSON) => setAuthor(responseJSON))
-//       .catch((error) => console.error(error));
-//   }, [id, API]);
-
-//   useEffect(() => {
-//     console.log(author);
-//   }, [author]);
-
-//   const handleDelete = () => {
-//     deleteAuthor();
-//   };
-
-//   const deleteAuthor = () => {
-//     fetch(`${API}/authors/${id}`, {
-//       method: "DELETE",
-//     })
-//       .then(() => navigate(`/authors`))
-//       .catch((error) => console.error(error));
-//   };
-
-//   return (
-//     <article>
-//       <h3>{author.name}</h3>
-//       <p>{author.biography}</p>
-//       <div className="showNavigation">
-//         <div>
-//           <Link to={`/authors`}>
-//             <button>Back</button>
-//           </Link>
-//         </div>
-//         <div>
-//           <Link to={`/authors/${id}/edit`}>
-//             <button>Edit</button>
-//           </Link>
-//         </div>
-//         <div>
-//           <button onClick={handleDelete}>Delete</button>
-//         </div>
-//       </div>
-//       <Shorts authorId={id} />
-//       <Reviews authorId={id} />
-//     </article>
-//   );
-// }
-
-// export default AuthorDetails;
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  Grid,
+  Box,
+  Divider,
+  Paper,
+  Container,
+} from "@mui/material";
 import Reviews from "./Reviews";
 import Shorts from "./Shorts";
+
 const API = import.meta.env.VITE_BASE_URL;
 
 function WriterDetails() {
@@ -74,11 +27,7 @@ function WriterDetails() {
       .then((response) => response.json())
       .then((responseJSON) => setWriter(responseJSON))
       .catch((error) => console.error(error));
-  }, [id, API]);
-
-  useEffect(() => {
-    console.log(writer);
-  }, [writer]);
+  }, [id]);
 
   const handleDelete = () => {
     deleteWriter();
@@ -93,35 +42,80 @@ function WriterDetails() {
   };
 
   return (
-    <article>
-      <h3>{writer.name}</h3>
-      {writer.picture_url && (
-        <img
-          src={writer.picture_url}
-          alt={writer.name}
-          style={{ width: "100px", height: "auto" }}
-        />
-      )}
-      <p>{writer.biography}</p>
-      <p>Status: {writer.is_active ? "Active" : "Inactive"}</p>
-      <div className="showNavigation">
-        <div>
-          <Link to={`/writers`}>
-            <button>Back</button>
-          </Link>
-        </div>
-        <div>
-          <Link to={`/writers/${id}/edit`}>
-            <button>Edit</button>
-          </Link>
-        </div>
-        <div>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
-      </div>
-      <Shorts writerId={id} />
-      <Reviews writerId={id} />
-    </article>
+    <Container maxWidth="md" sx={{ mt: 5 }}>
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Grid container spacing={2}>
+          {writer.picture_url && (
+            <Grid item xs={12} sm={4}>
+              <CardMedia
+                component="img"
+                image={writer.picture_url}
+                alt={writer.name}
+                sx={{ width: "100%", height: "auto", borderRadius: 1 }}
+              />
+            </Grid>
+          )}
+          <Grid item xs={12} sm={8}>
+            <Typography variant="h4" gutterBottom>
+              {writer.name}
+            </Typography>
+            <Typography variant="body1" sx={{ mt: 2 }}>
+              {writer.biography}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+              Status: {writer.is_active ? "Active" : "Inactive"}
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component={Link}
+                    to="/writers"
+                  >
+                    Back
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    component={Link}
+                    to={`/writers/${id}/edit`}
+                  >
+                    Edit
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </Button>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+        <Divider sx={{ my: 3 }} />
+        <Box>
+          <Typography variant="h5" gutterBottom>
+            Shorts
+          </Typography>
+          <Shorts writerId={id} />
+        </Box>
+        <Divider sx={{ my: 3 }} />
+        <Box>
+          <Typography variant="h5" gutterBottom>
+            Reviews
+          </Typography>
+          <Reviews writerId={id} />
+        </Box>
+      </Paper>
+    </Container>
   );
 }
 

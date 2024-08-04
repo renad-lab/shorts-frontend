@@ -1,28 +1,42 @@
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./Writer.css";
 
 function Writer({ writer }) {
   return (
-    <tr>
-      <td>
-        <a href={writer.url} target="_blank" rel="noreferrer">
-          {writer.name}
-        </a>
-      </td>
-      <td>{writer.biography}</td>
-      <td>
-        {writer.picture_url && (
-          <img
-            src={writer.picture_url}
+    <Card className="writer-card">
+      <Link to={`/writers/${writer.id}`} style={{ textDecoration: "none" }}>
+        <div className="writer-image-container">
+          <CardMedia
+            component="img"
+            className="writer-image"
+            image={writer.picture_url}
             alt={writer.name}
-            style={{ width: "50px", height: "auto" }}
           />
-        )}
-      </td>
-      <td>{writer.is_active ? "Active" : "Inactive"}</td>
-      <td>
-        <Link to={`/writers/${writer.id}`}>✏️</Link>
-      </td>
-    </tr>
+        </div>
+      </Link>
+      <CardContent className="writer-content">
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            fontFamily: "'Great Vibes', cursive",
+            fontSize: "2rem",
+            fontWeight: "bold",
+          }}
+          className="writer-name"
+        >
+          {writer.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          className="writer-biography"
+        >
+          {writer.biography}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 

@@ -1,53 +1,13 @@
-// import { useState, useEffect } from "react";
-// import Author from "./Author";
-
-// const API = import.meta.env.VITE_BASE_URL;
-
-// console.log(API);
-// function Authors() {
-//   const [authors, setAuthors] = useState([]);
-
-//   useEffect(() => {
-//     fetch(`${API}/authors`)
-//       .then((response) => response.json())
-//       .then((responseJSON) => {
-//         setAuthors(responseJSON);
-//       })
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   return (
-//     <div className="Authors">
-//       <section>
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>Name</th>
-//               <th>Biography</th>
-//               <th>Details</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {authors.map((author) => {
-//               return <Author key={author.id} author={author} />;
-//             })}
-//           </tbody>
-//         </table>
-//       </section>
-//     </div>
-//   );
-// }
-
-// export default Authors;
-
 import { useState, useEffect } from "react";
-import Writer from "./Writer"; // Updated import to Writer
+import Writer from "./Writer";
+import { Grid, Container, Typography, Box, Pagination } from "@mui/material";
 
 const API = import.meta.env.VITE_BASE_URL;
 
-console.log(API);
 function Writers() {
   const [writers, setWriters] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Number of writers per page
 
   useEffect(() => {
     fetch(`${API}/writers`)
@@ -58,27 +18,53 @@ function Writers() {
       .catch((error) => console.error(error));
   }, []);
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const paginatedWriters = writers.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
-    <div className="Writers">
-      <section>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Biography</th>
-              <th>Picture</th>
-              <th>Active</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {writers.map((writer) => {
-              return <Writer key={writer.id} writer={writer} />;
-            })}
-          </tbody>
-        </table>
-      </section>
-    </div>
+    <Container maxWidth="lg" sx={{ mt: 5 }}>
+      <Box textAlign="center" mb={4}>
+        <Typography variant="h3" component="h1" gutterBottom>
+          Writers Gallery
+        </Typography>
+        <Typography variant="subtitle1" color="textSecondary">
+          Discover the amazing writers in our collection
+        </Typography>
+      </Box>
+      <Grid container spacing={4}>
+        {paginatedWriters.map((writer) => (
+          <Grid item key={writer.id} xs={12} sm={6} md={4}>
+            <Writer writer={writer} />
+          </Grid>
+        ))}
+      </Grid>
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Pagination
+          count={Math.ceil(writers.length / itemsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+          sx={{
+            "& .MuiPaginationItem-root": {
+              backgroundColor: "#000000", // Black background
+              color: "#ffffff", // White text color
+            },
+            "& .Mui-selected": {
+              backgroundColor: "#ffffff", // White background for selected page
+              color: "#000000", // Black text color for selected page
+            },
+            "& .MuiPaginationItem-ellipsis": {
+              color: "#ffffff", // White color for ellipsis
+            },
+          }}
+        />
+      </Box>
+    </Container>
   );
 }
 

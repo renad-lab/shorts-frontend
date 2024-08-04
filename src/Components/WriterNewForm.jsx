@@ -1,70 +1,12 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// const API = import.meta.env.VITE_BASE_URL;
-
-// function AuthorNewForm() {
-//   const navigate = useNavigate();
-//   const [author, setAuthor] = useState({
-//     name: "",
-//     biography: "",
-//   });
-
-//   // Add a new author. Redirect to the index view.
-//   const addAuthor = () => {
-//     fetch(`${API}/authors`, {
-//       method: "POST",
-//       body: JSON.stringify(author),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//       .then(() => {
-//         navigate(`/authors`);
-//       })
-//       .catch((error) => console.error("catch", error));
-//   };
-
-//   const handleTextChange = (event) => {
-//     setAuthor({ ...author, [event.target.id]: event.target.value });
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     addAuthor();
-//   };
-
-//   return (
-//     <div className="New">
-//       <form onSubmit={handleSubmit}>
-//         <label htmlFor="name">Name:</label>
-//         <input
-//           id="name"
-//           value={author.name}
-//           type="text"
-//           onChange={handleTextChange}
-//           placeholder="Name of the Author"
-//           required
-//         />
-//         <label htmlFor="biography">Biography:</label>
-//         <textarea
-//           id="biography"
-//           value={author.biography}
-//           onChange={handleTextChange}
-//           placeholder="Write a short biography of the author"
-//           required
-//         />
-//         <br />
-//         <input type="submit" value="Add Author" />
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default AuthorNewForm;
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Box,
+} from "@mui/material";
 
 const API = import.meta.env.VITE_BASE_URL;
 
@@ -106,46 +48,60 @@ function WriterNewForm() {
   };
 
   return (
-    <div className="New">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          value={writer.name}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="Name of the Writer"
-          required
-        />
-        <label htmlFor="biography">Biography:</label>
-        <textarea
-          id="biography"
-          value={writer.biography}
-          onChange={handleTextChange}
-          placeholder="Write a short biography of the writer"
-          required
-        />
-        <label htmlFor="picture_url">Picture URL:</label>
-        <input
-          id="picture_url"
-          value={writer.picture_url}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="URL of the writer's picture"
-        />
-        <label htmlFor="is_active">
-          <input
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        maxWidth: 400,
+        mx: "auto",
+        mt: 4,
+      }}
+    >
+      <TextField
+        id="name"
+        label="Name"
+        value={writer.name}
+        onChange={handleTextChange}
+        placeholder="Name of the Writer"
+        required
+        fullWidth
+      />
+      <TextField
+        id="biography"
+        label="Biography"
+        value={writer.biography}
+        onChange={handleTextChange}
+        placeholder="Write a short biography of the writer"
+        required
+        multiline
+        rows={4}
+        fullWidth
+      />
+      <TextField
+        id="picture_url"
+        label="Picture URL"
+        value={writer.picture_url}
+        onChange={handleTextChange}
+        placeholder="URL of the writer's picture"
+        fullWidth
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
             id="is_active"
-            type="checkbox"
             checked={writer.is_active}
             onChange={handleTextChange}
           />
-          Active
-        </label>
-        <br />
-        <input type="submit" value="Add Writer" />
-      </form>
-    </div>
+        }
+        label="Active"
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Add Writer
+      </Button>
+    </Box>
   );
 }
 
