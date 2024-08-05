@@ -9,7 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 
-function ShortForm({ shortDetails, handleSubmit, toggleView, children }) {
+const API = import.meta.env.VITE_BASE_URL;
+
+function ShortForm({ shortDetails, toggleView, children }) {
   let { id } = useParams(); // Assumes id is short.id
 
   const [short, setShort] = useState({
@@ -28,6 +30,19 @@ function ShortForm({ shortDetails, handleSubmit, toggleView, children }) {
 
   const handleCheckboxChange = (event) => {
     setShort({ ...short, [event.target.id]: event.target.checked });
+  };
+
+  const handleSubmit = (short, id) => {
+    fetch(`${API}/writers/${id}/shorts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(short),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {
