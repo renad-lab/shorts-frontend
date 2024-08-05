@@ -10,8 +10,8 @@ function Footer() {
         mt: 5,
         py: 3,
         px: 2,
-        backgroundColor: "#ffffff", // White background
-        color: "#000000", // Black text color
+        backgroundColor: "#51423E ", // White background
+        color: "#FFFAFA", // Black text color
       }}
     >
       <Container maxWidth="lg">
@@ -20,13 +20,13 @@ function Footer() {
             <Typography
               variant="h6"
               gutterBottom
-              sx={{ fontSize: "0.75rem", color: "#000000" }}
+              sx={{ fontSize: "0.75rem", color: "#FFFAFA" }}
             >
               Rediscovering the Joy of Long-Form Reading
             </Typography>
             <Typography
               variant="body2"
-              sx={{ fontSize: "0.75rem", color: "#000000" }}
+              sx={{ fontSize: "0.75rem", color: "#FFFAFA" }}
             >
               Shorts was born from my struggle to reconnect with long-form
               reading in a world dominated by quick, bite-sized content. Like
@@ -42,9 +42,9 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#000000", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
               >
-                <Facebook fontSize="small" sx={{ color: "#000000" }} />{" "}
+                <Facebook fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
               </Link>
               <Link
@@ -52,9 +52,9 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#000000", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
               >
-                <Twitter fontSize="small" sx={{ color: "#000000" }} />{" "}
+                <Twitter fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
               </Link>
               <Link
@@ -62,9 +62,9 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#000000", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
               >
-                <Instagram fontSize="small" sx={{ color: "#000000" }} />{" "}
+                <Instagram fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
               </Link>
               <Link
@@ -72,9 +72,9 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#000000", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
               >
-                <LinkedIn fontSize="small" sx={{ color: "#000000" }} />{" "}
+                <LinkedIn fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
               </Link>
             </Box>
@@ -83,7 +83,7 @@ function Footer() {
         <Box textAlign="center" mt={2}>
           <Typography
             variant="body2"
-            sx={{ fontSize: "0.75rem", color: "#000000" }}
+            sx={{ fontSize: "0.75rem", color: "#FFFAFA" }}
           >
             &copy; {new Date().getFullYear()} Shorts App. All rights reserved.
           </Typography>

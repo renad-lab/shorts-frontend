@@ -1,13 +1,12 @@
-/* Base styles for html and body */
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #e0e0e0;
-  color: #362c3f;
-  font-family: Arial, sans-serif; /* Default font-family */
+  background-color: white;
+  color: #51423e;
+  font-family: Arial, sans-serif;
 }
 
 /* Container with margins */
@@ -30,3 +29,9 @@ body {
     font-size: 14px; /* Font size for smaller screens */
   }
 }
+
+/* 
+#FFF2DF 
+#51423E 
+#818583 
+#64564A  */

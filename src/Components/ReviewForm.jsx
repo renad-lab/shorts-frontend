@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {
+  TextField,
+  Checkbox,
+  FormControlLabel,
+  Button,
+  Box,
+  Typography,
+} from "@mui/material";
 
 function ReviewForm({ reviewDetails, handleSubmit, toggleView, children }) {
   let { id } = useParams(); // Assumes id is short.id
@@ -45,60 +53,76 @@ function ReviewForm({ reviewDetails, handleSubmit, toggleView, children }) {
   };
 
   return (
-    <div className="Edit">
+    <Box
+      component="div"
+      className="Edit"
+      sx={{ padding: 2, borderRadius: 1, boxShadow: 3 }}
+    >
       {children}
       <form onSubmit={onSubmit}>
-        <label htmlFor="reviewer">Name:</label>
-        <input
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="h6">Add a New Review</Typography>
+        </Box>
+        <TextField
           id="reviewer"
+          label="Name"
+          variant="outlined"
           value={review.reviewer}
-          type="text"
           onChange={handleTextChange}
-          placeholder="Your name"
+          fullWidth
           required
+          sx={{ mb: 2 }}
         />
-        <label htmlFor="title">Title:</label>
-        <input
+        <TextField
           id="title"
-          type="text"
-          required
+          label="Title"
+          variant="outlined"
           value={review.title}
           onChange={handleTextChange}
-        />
-        <label htmlFor="rating">Rating:</label>
-        <input
-          id="rating"
-          type="number"
-          name="rating"
-          min="0"
-          max="5"
-          step="1"
+          fullWidth
           required
-          placeholder="Please enter value between 0 and 5"
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          id="rating"
+          label="Rating"
+          type="number"
+          InputProps={{ inputProps: { min: 0, max: 5, step: 1 } }}
+          variant="outlined"
           value={review.rating}
           onChange={handleTextChange}
+          fullWidth
+          required
+          sx={{ mb: 2 }}
         />
-        <label htmlFor="content">Review:</label>
-        <textarea
+        <TextField
           id="content"
-          name="content"
+          label="Review"
+          variant="outlined"
+          multiline
+          rows={4}
           value={review.content}
-          placeholder="What do you think..."
           onChange={handleTextChange}
+          fullWidth
+          sx={{ mb: 2 }}
         />
-        <label htmlFor="is_liked">
-          <input
-            id="is_liked"
-            type="checkbox"
-            checked={review.is_liked}
-            onChange={handleCheckboxChange}
-          />
-          Like
-        </label>
-        <br />
-        <input type="submit" />
+        <FormControlLabel
+          control={
+            <Checkbox
+              id="is_liked"
+              checked={review.is_liked}
+              onChange={handleCheckboxChange}
+            />
+          }
+          label="Like"
+        />
+        <Box sx={{ mt: 2 }}>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 }
 

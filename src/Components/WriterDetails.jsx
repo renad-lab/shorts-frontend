@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
-  Card,
-  CardContent,
   CardMedia,
   Typography,
   Button,
@@ -43,7 +41,10 @@ function WriterDetails() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 5 }}>
-      <Paper elevation={3} sx={{ p: 3 }}>
+      <Paper
+        elevation={3}
+        sx={{ p: 3, display: "flex", flexDirection: "column", gap: 3 }}
+      >
         <Grid container spacing={2}>
           {writer.picture_url && (
             <Grid item xs={12} sm={4}>
@@ -51,12 +52,12 @@ function WriterDetails() {
                 component="img"
                 image={writer.picture_url}
                 alt={writer.name}
-                sx={{ width: "100%", height: "auto", borderRadius: 1 }}
+                sx={{ width: "100%", height: "auto", borderRadius: 2 }}
               />
             </Grid>
           )}
           <Grid item xs={12} sm={8}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
               {writer.name}
             </Typography>
             <Typography variant="body1" sx={{ mt: 2 }}>
@@ -102,16 +103,16 @@ function WriterDetails() {
         </Grid>
         <Divider sx={{ my: 3 }} />
         <Box>
-          <Typography variant="h5" gutterBottom>
+          {/* <Typography variant="h5" gutterBottom>
             Shorts
-          </Typography>
+          </Typography> */}
           <Shorts writerId={id} />
         </Box>
         <Divider sx={{ my: 3 }} />
         <Box>
-          <Typography variant="h5" gutterBottom>
+          {/* <Typography variant="h5" gutterBottom>
             Reviews
-          </Typography>
+          </Typography> */}
           <Reviews writerId={id} />
         </Box>
       </Paper>

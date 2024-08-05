@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {
+  Typography,
+  Button,
+  Box,
+  Container,
+  Divider,
+  CircularProgress,
+} from "@mui/material";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm";
 
@@ -7,6 +15,7 @@ const API = import.meta.env.VITE_BASE_URL;
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   const handleAdd = (newReview) => {
@@ -62,32 +71,49 @@ function Reviews() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setReviews(data.reviews);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
-        // Optionally display a user-friendly message here
+        setLoading(false);
       });
   }, [id]);
 
   return (
-    <section className="Reviews">
-      <h2>Reviews</h2>
-      <ReviewForm handleSubmit={handleAdd}>Add a New Review</ReviewForm>
-      {reviews.length > 0 ? (
+    <Container maxWidth="md" sx={{ mt: 5 }}>
+      <Box mb={3}>
+        {/* <Typography variant="h4" gutterBottom>
+          Reviews
+        </Typography> */}
+        <ReviewForm handleSubmit={handleAdd} />
+      </Box>
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="200px"
+        >
+          <CircularProgress />
+        </Box>
+      ) : reviews.length > 0 ? (
         reviews.map((review) => (
-          <Review
-            key={review.id}
-            review={review}
-            handleDelete={() => handleDelete(review.id)}
-            handleSubmit={handleEdit}
-          />
+          <Box key={review.id} mb={2}>
+            <Review
+              review={review}
+              handleDelete={() => handleDelete(review.id)}
+              handleSubmit={handleEdit}
+            />
+            <Divider sx={{ my: 2 }} />
+          </Box>
         ))
       ) : (
-        <p>No reviews available.</p> // Informative message when there are no reviews
+        <Typography variant="body1" color="textSecondary">
+          No reviews available.
+        </Typography>
       )}
-    </section>
+    </Container>
   );
 }
 
