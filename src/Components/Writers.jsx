@@ -7,7 +7,7 @@ const API = import.meta.env.VITE_BASE_URL;
 function Writers() {
   const [writers, setWriters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Number of writers per page
+  const itemsPerPage = 6;
 
   useEffect(() => {
     fetch(`${API}/writers`)
@@ -51,15 +51,15 @@ function Writers() {
           onChange={handlePageChange}
           sx={{
             "& .MuiPaginationItem-root": {
-              backgroundColor: "#000000", // Black background
-              color: "#ffffff", // White text color
+              backgroundColor: "#000000",
+              color: "#ffffff",
             },
             "& .Mui-selected": {
-              backgroundColor: "#ffffff", // White background for selected page
-              color: "#000000", // Black text color for selected page
+              backgroundColor: "#ffffff",
+              color: "#000000",
             },
             "& .MuiPaginationItem-ellipsis": {
-              color: "#ffffff", // White color for ellipsis
+              color: "#ffffff",
             },
           }}
         />

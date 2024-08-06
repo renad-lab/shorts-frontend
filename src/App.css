@@ -9,24 +9,23 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Container with margins */
 .container {
   margin-left: 8px;
   margin-right: 8px;
-  padding: 0; /* Optional: reset padding if necessary */
-  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Media queries for responsiveness */
 @media (min-width: 600px) {
   .container {
-    font-size: 16px; /* Font size for larger screens */
+    font-size: 16px;
   }
 }
 
 @media (max-width: 599px) {
   .container {
-    font-size: 14px; /* Font size for smaller screens */
+    font-size: 14px;
   }
 }
 
