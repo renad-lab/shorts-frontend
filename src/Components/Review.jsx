@@ -1,14 +1,23 @@
 // import { useState } from "react";
+// import {
+//   Paper,
+//   Typography,
+//   Button,
+//   Divider,
+//   IconButton,
+//   Box,
+//   Tooltip,
+// } from "@mui/material";
+// import EditIcon from "@mui/icons-material/Edit";
+// import DeleteIcon from "@mui/icons-material/Delete";
 // import ReviewForm from "./ReviewForm";
 
 // function Review({ review, handleDelete, handleSubmit }) {
 //   const [viewEditForm, setEditForm] = useState(false);
-//   const toggleView = () => {
-//     setEditForm(!viewEditForm);
-//   };
+//   const toggleView = () => setEditForm((prev) => !prev);
 
 //   return (
-//     <div className="Review">
+//     <Paper elevation={3} sx={{ p: 3, mb: 2 }}>
 //       {viewEditForm ? (
 //         <ReviewForm
 //           reviewDetails={review}
@@ -16,28 +25,72 @@
 //           handleSubmit={handleSubmit}
 //         />
 //       ) : (
-//         <div>
-//           <h4>
+//         <>
+//           <Typography variant="h6" gutterBottom>
 //             {review.title} <span>{review.is_liked ? "👍" : "👎"}</span>
-//           </h4>
-//           <h5>{review.reviewer}</h5>
-//           <p>{review.content}</p>
-//           <p>
-//             <small>
-//               Created at: {new Date(review.created_at).toLocaleString()}
-//               <br />
-//               Updated at: {new Date(review.updated_at).toLocaleString()}
-//             </small>
-//           </p>
-//         </div>
+//           </Typography>
+//           <Typography variant="subtitle1" color="textSecondary" gutterBottom>
+//             {review.reviewer}
+//           </Typography>
+//           <Typography variant="body1" paragraph>
+//             {review.content}
+//           </Typography>
+//           <Typography variant="caption" color="textSecondary">
+//             Created at: {new Date(review.created_at).toLocaleString()}
+//             <br />
+//             Updated at: {new Date(review.updated_at).toLocaleString()}
+//           </Typography>
+//           <Divider sx={{ my: 2 }} />
+//           <Box display="flex" justifyContent="flex-end" gap={1}>
+//             {viewEditForm ? (
+//               <Button
+//                 variant="contained"
+//                 sx={{
+//                   backgroundColor: "#000000",
+//                   color: "#ffffff",
+//                   "&:hover": {
+//                     backgroundColor: "#ffffff",
+//                     color: "#000000",
+//                   },
+//                 }}
+//                 onClick={toggleView}
+//               >
+//                 Cancel
+//               </Button>
+//             ) : (
+//               <Tooltip title="Edit this review">
+//                 <IconButton
+//                   sx={{
+//                     color: "#000000",
+//                     "&:hover": {
+//                       color: "#ffffff",
+//                       backgroundColor: "#000000",
+//                     },
+//                   }}
+//                   onClick={toggleView}
+//                 >
+//                   <EditIcon />
+//                 </IconButton>
+//               </Tooltip>
+//             )}
+//             <Tooltip title="Delete this review">
+//               <IconButton
+//                 sx={{
+//                   color: "#000000",
+//                   "&:hover": {
+//                     color: "#ffffff",
+//                     backgroundColor: "#000000",
+//                   },
+//                 }}
+//                 onClick={() => handleDelete(review.id)}
+//               >
+//                 <DeleteIcon />
+//               </IconButton>
+//             </Tooltip>
+//           </Box>
+//         </>
 //       )}
-//       <div className="review-actions">
-//         <button onClick={toggleView}>
-//           {viewEditForm ? "Cancel" : "Edit this review"}
-//         </button>
-//         <button onClick={() => handleDelete(review.id)}>Delete</button>
-//       </div>
-//     </div>
+//     </Paper>
 //   );
 // }
 
@@ -45,12 +98,10 @@
 
 import { useState } from "react";
 import {
-  Paper,
   Typography,
   Button,
   Divider,
   IconButton,
-  Box,
   Tooltip,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -62,7 +113,7 @@ function Review({ review, handleDelete, handleSubmit }) {
   const toggleView = () => setEditForm((prev) => !prev);
 
   return (
-    <Paper elevation={3} sx={{ p: 3, mb: 2 }}>
+    <>
       {viewEditForm ? (
         <ReviewForm
           reviewDetails={review}
@@ -86,27 +137,58 @@ function Review({ review, handleDelete, handleSubmit }) {
             Updated at: {new Date(review.updated_at).toLocaleString()}
           </Typography>
           <Divider sx={{ my: 2 }} />
-          <Box display="flex" justifyContent="flex-end" gap={1}>
+          <div
+            style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
+          >
             {viewEditForm ? (
-              <Button variant="outlined" color="secondary" onClick={toggleView}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  "&:hover": {
+                    backgroundColor: "#ffffff",
+                    color: "#000000",
+                  },
+                }}
+                onClick={toggleView}
+              >
                 Cancel
               </Button>
             ) : (
               <Tooltip title="Edit this review">
-                <IconButton color="primary" onClick={toggleView}>
+                <IconButton
+                  sx={{
+                    color: "#000000",
+                    "&:hover": {
+                      color: "#ffffff",
+                      backgroundColor: "#000000",
+                    },
+                  }}
+                  onClick={toggleView}
+                >
                   <EditIcon />
                 </IconButton>
               </Tooltip>
             )}
             <Tooltip title="Delete this review">
-              <IconButton color="error" onClick={() => handleDelete(review.id)}>
+              <IconButton
+                sx={{
+                  color: "#000000",
+                  "&:hover": {
+                    color: "#ffffff",
+                    backgroundColor: "#000000",
+                  },
+                }}
+                onClick={() => handleDelete(review.id)}
+              >
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
-          </Box>
+          </div>
         </>
       )}
-    </Paper>
+    </>
   );
 }
 
