@@ -36,8 +36,8 @@ npm run dev
 
 ## Deployment
 
-- **Backend**: Deployed on Render. (Add URL here)
-- **Frontend**: Deployed on Netlify. (Add URL here)
+- **Backend**: Deployed on Render.
+- **Frontend**: Deployed on Netlify.
 
 ## Technologies Used
 
