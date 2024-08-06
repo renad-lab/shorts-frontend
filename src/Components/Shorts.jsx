@@ -25,7 +25,6 @@ function Shorts() {
         }
       } catch (err) {
         console.error(err);
-        // You can handle errors here if needed, e.g., logging or a notification
       } finally {
         setLoading(false);
       }
@@ -44,7 +43,6 @@ function Shorts() {
       );
     } catch (err) {
       console.error(err);
-      // Handle delete errors if needed
     }
   };
 
@@ -66,7 +64,6 @@ function Shorts() {
       );
     } catch (err) {
       console.error(err);
-      // Handle edit errors if needed
     }
   };
 
@@ -87,7 +84,7 @@ function Shorts() {
             shorts.map((short) => (
               <Short
                 key={short.id}
-                short={short}
+                id={short.id}
                 handleDelete={() => handleDelete(short.id)}
                 handleSubmit={handleEdit}
               />

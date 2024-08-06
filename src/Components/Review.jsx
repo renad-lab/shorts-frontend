@@ -1,11 +1,9 @@
 // import { useState } from "react";
 // import {
-//   Paper,
 //   Typography,
 //   Button,
 //   Divider,
 //   IconButton,
-//   Box,
 //   Tooltip,
 // } from "@mui/material";
 // import EditIcon from "@mui/icons-material/Edit";
@@ -17,7 +15,7 @@
 //   const toggleView = () => setEditForm((prev) => !prev);
 
 //   return (
-//     <Paper elevation={3} sx={{ p: 3, mb: 2 }}>
+//     <>
 //       {viewEditForm ? (
 //         <ReviewForm
 //           reviewDetails={review}
@@ -41,7 +39,9 @@
 //             Updated at: {new Date(review.updated_at).toLocaleString()}
 //           </Typography>
 //           <Divider sx={{ my: 2 }} />
-//           <Box display="flex" justifyContent="flex-end" gap={1}>
+//           <div
+//             style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
+//           >
 //             {viewEditForm ? (
 //               <Button
 //                 variant="contained"
@@ -87,10 +87,10 @@
 //                 <DeleteIcon />
 //               </IconButton>
 //             </Tooltip>
-//           </Box>
+//           </div>
 //         </>
 //       )}
-//     </Paper>
+//     </>
 //   );
 // }
 
@@ -106,7 +106,7 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ReviewForm from "./ReviewForm";
+import ReviewEditForm from "./ReviewEditForm";
 
 function Review({ review, handleDelete, handleSubmit }) {
   const [viewEditForm, setEditForm] = useState(false);
@@ -115,8 +115,8 @@ function Review({ review, handleDelete, handleSubmit }) {
   return (
     <>
       {viewEditForm ? (
-        <ReviewForm
-          reviewDetails={review}
+        <ReviewEditForm
+          reviewDetails={review} // Pass review details
           toggleView={toggleView}
           handleSubmit={handleSubmit}
         />

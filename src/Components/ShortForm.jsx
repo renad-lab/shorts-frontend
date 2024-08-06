@@ -20,8 +20,8 @@ function ShortForm({ shortDetails, toggleView, children }) {
     category: "",
     description: "",
     is_favorite: false,
-    writer_id: id, // Updated to writer_id
-    picture_url: "", // Added for new schema
+    writer_id: id,
+    picture_url: "",
   });
 
   const handleTextChange = (event) => {

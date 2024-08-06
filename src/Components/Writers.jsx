@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import Writer from "./Writer";
-import { Grid, Container, Typography, Box, Pagination } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Typography,
+  Box,
+  Pagination,
+  Divider,
+} from "@mui/material";
+import Slider from "react-slick";
 
 const API = import.meta.env.VITE_BASE_URL;
 
@@ -27,8 +35,66 @@ function Writers() {
     currentPage * itemsPerPage
   );
 
+  // Settings for the carousel
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
   return (
-    <Container maxWidth="lg" sx={{ mt: 5 }}>
+    <Container maxWidth="lg" sx={{ mt: 8 }}>
+      <Box mb={4}>
+        <Typography variant="h4" component="h2" gutterBottom textAlign="center">
+          Explore These Featured Essays!
+        </Typography>
+        <Slider {...carouselSettings}>
+          <div>
+            <a
+              href="https://www.themarginalian.org/2019/12/26/katharina-kepler-witchcraft-dream/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://res.cloudinary.com/dxeoesm7e/image/upload/v1722959242/Designer_81_sfm28p.png"
+                alt="Essay 1"
+                style={{ width: "100%", borderRadius: "8px" }}
+              />
+            </a>
+          </div>
+          <div>
+            <a
+              href="https://www.publicbooks.org/what-essays-are-and-what-essayists-do/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://res.cloudinary.com/dxeoesm7e/image/upload/v1722959253/Designer_80_jakxrr.png"
+                alt="Essay 2"
+                style={{ width: "100%", borderRadius: "8px" }}
+              />
+            </a>
+          </div>
+          <div>
+            <a
+              href="https://longreads.com/2024/07/08/im-good-i-promise-the-loneliness-of-the-low-ranking-tennis-player/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://res.cloudinary.com/dxeoesm7e/image/upload/v1722962573/Designer_82_s6xdnh.png"
+                alt="Essay 3"
+                style={{ width: "100%", borderRadius: "8px" }}
+              />
+            </a>
+          </div>
+        </Slider>
+      </Box>
+      <Divider sx={{ mb: 4 }} />
       <Box textAlign="center" mb={4}>
         <Typography variant="h3" component="h1" gutterBottom>
           Writers Gallery
