@@ -308,8 +308,7 @@ function ReviewEditForm({ reviewDetails, toggleView }) {
     })
       .then((response) => response.json())
       .then(() => {
-        navigate(`/shorts/${id}/reviews/`);
-        toggleView(); // Toggle view after update
+        toggleView((prevState) => !prevState); // Toggle view after update
       })
       .catch((error) => console.error("catch", error));
   };
