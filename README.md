@@ -36,8 +36,8 @@ npm run dev
 
 ## Deployment
 
-- **Backend**: Deployed on Render.
-- **Frontend**: Deployed on Netlify.
+- **Backend**: Deployed on Render.(https://shorts-backend.onrender.com)
+- **Frontend**: Deployed on Netlify.(https://melodious-otter-0e352a.netlify.app)
 
 ## Technologies Used
 
