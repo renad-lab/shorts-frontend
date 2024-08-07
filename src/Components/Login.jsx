@@ -1,64 +1,144 @@
 // import React, { useState } from "react";
-// import { TextField, Button, Box, Typography } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
+// import { auth } from "../firebaseConfig";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import {
+//   TextField,
+//   Button,
+//   Box,
+//   Typography,
+//   Container,
+//   CircularProgress,
+//   IconButton,
+//   InputAdornment,
+//   Collapse,
+// } from "@mui/material";
+// import { Visibility, VisibilityOff } from "@mui/icons-material";
+// import { css, keyframes } from "@emotion/react";
+
+// const fadeIn = keyframes`
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// `;
+
+// const animatedContainer = css`
+//   animation: ${fadeIn} 0.5s ease-out;
+// `;
 
 // function Login() {
 //   const [email, setEmail] = useState("");
 //   const [password, setPassword] = useState("");
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [error, setError] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [authenticated, setAuthenticated] = useState(false);
+
 //   const navigate = useNavigate();
 
-//   const handleSubmit = (event) => {
+//   const handleLogin = async (event) => {
 //     event.preventDefault();
-//     // Handle login logic here
-//     console.log("Email:", email);
-//     console.log("Password:", password);
-//     navigate("/shop"); // Redirect to the shop page after login
+//     setLoading(true);
+//     try {
+//       await signInWithEmailAndPassword(auth, email, password);
+//       setAuthenticated(true);
+//       setTimeout(() => {
+//         navigate("/writers");
+//       }, 1000);
+//     } catch (error) {
+//       setError(error.message);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleClickShowPassword = () => {
+//     setShowPassword(!showPassword);
 //   };
 
 //   return (
-//     <Box
-//       sx={{
-//         maxWidth: 400,
-//         mx: "auto",
-//         my: 4,
-//         p: 2,
-//         borderRadius: 1,
-//         boxShadow: 3,
-//       }}
-//     >
-//       <Typography variant="h5" gutterBottom>
-//         Login
-//       </Typography>
-//       <form onSubmit={handleSubmit}>
+//     <Container maxWidth="xs" sx={{ mt: 8 }}>
+//       <Box
+//         component="form"
+//         onSubmit={handleLogin}
+//         sx={{
+//           display: "flex",
+//           flexDirection: "column",
+//           alignItems: "center",
+//           padding: 3,
+//           borderRadius: 2,
+//           boxShadow: 3,
+//           backgroundColor: "background.paper",
+//         }}
+//         css={animatedContainer}
+//       >
+//         {/* <Typography variant="h5" gutterBottom>
+//           Sign In
+//         </Typography> */}
 //         <TextField
-//           id="email"
 //           label="Email"
 //           type="email"
-//           variant="outlined"
-//           fullWidth
-//           margin="normal"
 //           value={email}
 //           onChange={(e) => setEmail(e.target.value)}
+//           fullWidth
+//           margin="normal"
 //           required
 //         />
 //         <TextField
-//           id="password"
 //           label="Password"
-//           type="password"
-//           variant="outlined"
-//           fullWidth
-//           margin="normal"
+//           type={showPassword ? "text" : "password"}
 //           value={password}
 //           onChange={(e) => setPassword(e.target.value)}
+//           fullWidth
+//           margin="normal"
 //           required
+//           InputProps={{
+//             endAdornment: (
+//               <InputAdornment position="end">
+//                 <IconButton
+//                   aria-label="toggle password visibility"
+//                   onClick={handleClickShowPassword}
+//                   edge="end"
+//                 >
+//                   {showPassword ? <VisibilityOff /> : <Visibility />}
+//                 </IconButton>
+//               </InputAdornment>
+//             ),
+//           }}
 //         />
-//         <Button type="submit" variant="contained" color="primary" fullWidth>
-//           Login
+//         <Collapse in={!!error}>
+//           <Typography color="error" sx={{ mt: 2 }}>
+//             {error}
+//           </Typography>
+//         </Collapse>
+//         {loading && (
+//           <Box sx={{ mt: 2 }}>
+//             <CircularProgress />
+//           </Box>
+//         )}
+//         <Collapse in={authenticated && !loading}>
+//           <Typography color="primary" sx={{ mt: 2 }}>
+//             Authenticated with Firebase.
+//           </Typography>
+//         </Collapse>
+//         <Button
+//           type="submit"
+//           variant="contained"
+//           color="primary"
+//           sx={{ mt: 2 }}
+//           disabled={loading}
+//         >
+//           Sign In
 //         </Button>
-//       </form>
-//     </Box>
+//       </Box>
+//     </Container>
 //   );
 // }
+
+// export default Login;
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -73,16 +153,46 @@ import {
   CircularProgress,
   IconButton,
   InputAdornment,
+  Collapse,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { css, keyframes } from "@emotion/react";
+
+import myIcon from "../assets/script.png";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const animatedContainer = css`
+  animation: ${fadeIn} 0.5s ease-out;
+`;
+
+const iconAnimation = css`
+  animation: ${rotate} 3s linear infinite;
+`;
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false); // State to track authentication status
+  const [authenticated, setAuthenticated] = useState(false);
 
   const navigate = useNavigate();
 
@@ -91,10 +201,10 @@ function Login() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      setAuthenticated(true); // Update authentication status
+      setAuthenticated(true);
       setTimeout(() => {
-        navigate("/writers"); // Redirect to homepage
-      }, 1000); // Delay for UI effect
+        navigate("/writers");
+      }, 1000);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -120,10 +230,15 @@ function Login() {
           boxShadow: 3,
           backgroundColor: "background.paper",
         }}
+        css={animatedContainer}
       >
-        <Typography variant="h5" gutterBottom>
-          Sign In
-        </Typography>
+        <Box
+          component="img"
+          src={myIcon}
+          alt="My Custom Icon"
+          sx={{ width: 60, height: 60, mb: 2 }}
+          css={iconAnimation}
+        />
         <TextField
           label="Email"
           type="email"
@@ -135,7 +250,7 @@ function Login() {
         />
         <TextField
           label="Password"
-          type={showPassword ? "text" : "password"} // Toggle between text and password
+          type={showPassword ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
@@ -155,27 +270,27 @@ function Login() {
             ),
           }}
         />
-        {error && (
+        <Collapse in={!!error}>
           <Typography color="error" sx={{ mt: 2 }}>
             {error}
           </Typography>
-        )}
+        </Collapse>
         {loading && (
           <Box sx={{ mt: 2 }}>
             <CircularProgress />
           </Box>
         )}
-        {authenticated && !loading && (
+        <Collapse in={authenticated && !loading}>
           <Typography color="primary" sx={{ mt: 2 }}>
-            Authenticated with Firebase
+            Authenticated with Firebase.
           </Typography>
-        )}
+        </Collapse>
         <Button
           type="submit"
           variant="contained"
           color="primary"
           sx={{ mt: 2 }}
-          disabled={loading} // Disable button while loading
+          disabled={loading}
         >
           Sign In
         </Button>

@@ -13,7 +13,7 @@ export default function NavBar() {
     <AppBar
       position="static"
       sx={{
-        height: 300,
+        height: 350,
         backgroundImage:
           'url("/src/assets/E33B0498-DB24-48AB-AAD6-4B2DE8A7B537_1_201_a.jpeg")',
         backgroundSize: "cover",

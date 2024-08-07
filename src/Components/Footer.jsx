@@ -10,8 +10,8 @@ function Footer() {
         mt: 5,
         py: 3,
         px: 2,
-        backgroundColor: "#51423E ", // White background
-        color: "#FFFAFA", // Black text color
+        backgroundColor: "#51423E ",
+        color: "#FFFAFA",
       }}
     >
       <Container maxWidth="lg">
@@ -42,7 +42,7 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Facebook fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
@@ -52,7 +52,7 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Twitter fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
@@ -62,7 +62,7 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Instagram fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
                 {/* Black color for icon */}
@@ -72,10 +72,9 @@ function Footer() {
                 color="inherit"
                 target="_blank"
                 rel="noopener"
-                sx={{ color: "#FFFAFA", mx: 1 }} // Black color for Link, horizontal margin
+                sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <LinkedIn fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
-                {/* Black color for icon */}
               </Link>
             </Box>
           </Grid>
