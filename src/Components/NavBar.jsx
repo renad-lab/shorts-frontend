@@ -14,7 +14,7 @@ export default function NavBar() {
       position="static"
       sx={{
         height: 350,
-        backgroundImage: 'url("/src/assets/banner.jpg")',
+        backgroundImage: 'url("/banner.jpg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
