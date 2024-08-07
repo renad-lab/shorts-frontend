@@ -45,7 +45,6 @@ function Footer() {
                 sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Facebook fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
-                {/* Black color for icon */}
               </Link>
               <Link
                 href="https://twitter.com"
@@ -55,7 +54,6 @@ function Footer() {
                 sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Twitter fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
-                {/* Black color for icon */}
               </Link>
               <Link
                 href="https://instagram.com"
@@ -65,7 +63,6 @@ function Footer() {
                 sx={{ color: "#FFFAFA", mx: 1 }}
               >
                 <Instagram fontSize="small" sx={{ color: "#FFFAFA" }} />{" "}
-                {/* Black color for icon */}
               </Link>
               <Link
                 href="https://linkedin.com"
